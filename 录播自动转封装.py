@@ -13,13 +13,13 @@ print("os装载成功")
 cwd = os.getcwd()
 
 try:
-    zm = open(cwd + "\\录播自动转码设置.zm", "r")
+    zm = open(cwd + "\\录播自动转封装设置.zm", "r")
     The_Path = zm.readline()
     print(The_Path)
     zm.close()
 
 except FileNotFoundError:
-    zm = open(cwd + "\\录播自动转码设置.zm", "w")
+    zm = open(cwd + "\\录播自动转封装设置.zm", "w")
     The_Path = input("输入路径")
     zm.write(The_Path)
     zm.close()
@@ -31,10 +31,10 @@ Time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 lu_jing = "创建变量"
 
 
-def zhuan_ma(lu_jing):  # 用来执行转码操作
+def zhuan_ma(lu_jing):  # 用来执行转封装操作
     lu_jing_out = lu_jing[:-3] + "mp4"
     os.rename(lu_jing, lu_jing_out)
-    print("转码完毕")
+    print("转封装完毕")
 
 
 class Watch(FileSystemEventHandler):  # 用来接受events的反馈
@@ -55,7 +55,7 @@ if __name__ == "__main__":  # 用observe对目录进行检测
         observer.schedule(event_handler, path, recursive=True)
         observer.start()
     except FileNotFoundError:
-        zm = open(cwd + "\\录播自动转码设置.zm", "w")
+        zm = open(cwd + "\\录播自动转封装设置.zm", "w")
         The_Path = input("输入路径2")
         zm.write(The_Path)
         zm.close()
