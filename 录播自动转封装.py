@@ -1,13 +1,17 @@
 # coding = utf-8
-# 录播自动转封装v0.1 @tdccj
+# 录播自动转封装v1.0 @tdccj
 
 from watchdog.events import FileSystemEventHandler
+
 print("watchdog_1装载成功")
 from watchdog.observers import Observer
+
 print("watchdog_2装载成功")
 import time
+
 print("time装载成功")
 import os
+
 print("os装载成功")
 
 cwd = os.getcwd()
@@ -34,7 +38,7 @@ lu_jing = "创建变量"
 def zhuan_ma(lu_jing):  # 用来执行转封装操作
     lu_jing_out = lu_jing[:-3] + "mp4"
     os.rename(lu_jing, lu_jing_out)
-    print("转封装完毕")
+    print(f"转封装完毕:{lu_jing_out}")
 
 
 class Watch(FileSystemEventHandler):  # 用来接受events的反馈
@@ -54,6 +58,7 @@ if __name__ == "__main__":  # 用observe对目录进行检测
     try:
         observer.schedule(event_handler, path, recursive=True)
         observer.start()
+        print("监控运行")
     except FileNotFoundError:
         zm = open(cwd + "\\录播自动转封装设置.zm", "w")
         The_Path = input("输入路径2")
