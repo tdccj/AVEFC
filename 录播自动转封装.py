@@ -1,5 +1,6 @@
 # coding = utf-8
 # 录播自动转封装v1.0 @tdccj
+# 尚有问题，待修复
 
 from watchdog.events import FileSystemEventHandler
 
@@ -36,9 +37,12 @@ lu_jing = "创建变量"
 
 
 def zhuan_ma(lu_jing):  # 用来执行转封装操作
-    lu_jing_out = lu_jing[:-3] + "mp4"
-    os.rename(lu_jing, lu_jing_out)
-    print(f"转封装完毕:{lu_jing_out}")
+    try:
+        lu_jing_out = lu_jing[:-3] + "mp4"
+        os.rename(lu_jing, lu_jing_out)
+        print(f"转封装完毕:{lu_jing_out}")
+    except FileNotFoundError:
+        print("转封装失败")
 
 
 class Watch(FileSystemEventHandler):  # 用来接受events的反馈
