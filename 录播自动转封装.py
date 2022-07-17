@@ -94,4 +94,8 @@ class Watch(FileSystemEventHandler):  # 用来接受events的反馈
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        time.sleep(10)
+
