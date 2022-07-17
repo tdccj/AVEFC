@@ -47,7 +47,7 @@ def main():
                 print("路径仍然错误，请重启")
         try:
             while True:  # 用来保证程序持续执行
-                time.sleep(1)
+                time.sleep(5)
 
         except KeyboardInterrupt:  # 除了程序被用户中断
             observer.stop()
