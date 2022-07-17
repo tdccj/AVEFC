@@ -1,6 +1,7 @@
 # coding = utf-8
 # 录播自动转封装v2.0 @tdccj
 # 备份功能开发失败，暂时不考虑，转封装后质量有待对比
+# ！！！不得在录播目录下以flv备份
 # 可以考虑多长时间没有修改文件之后开始转封装
 
 from watchdog.events import FileSystemEventHandler
