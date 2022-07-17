@@ -46,8 +46,8 @@ def zhuan_ma(lu_jing):  # 用来执行转封装操作
 
 
 class Watch(FileSystemEventHandler):  # 用来接受events的反馈
-    def on_closed(self, event):
-        print(f'文件结束编辑:{event.src_path}', Time)
+    def on_modified(self, event):
+        print(f'文件修改:{event.src_path}', Time)
         lu_jing = str(event.src_path)
 
         if lu_jing[-3:] == "flv":  # 判断是否为录播文件
