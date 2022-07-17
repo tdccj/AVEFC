@@ -1,7 +1,7 @@
 # coding = utf-8
-# 录播自动转封装v2.0.b @tdccj
-# 暂时可以运行，录播质量有无问题未知，待开发备份功能
-# 代码重构中
+# 录播自动转封装v2.0 @tdccj
+# 备份功能开发失败，暂时不考虑，转封装后质量有待对比
+# 可以考虑多长时间没有修改文件之后开始转封装
 
 from watchdog.events import FileSystemEventHandler
 
@@ -18,7 +18,7 @@ print("os装载成功")
 
 
 def main():
-    print("v2.0.b")
+    print("v2.0")
     cwd = os.getcwd()  # 获取当前目录
     The_Path = read(cwd)
     Time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
@@ -71,7 +71,7 @@ def read(cwd):     #读取配置文件
 
 def zhuan_ma(lu_jing):  # 用来执行转封装操作
     try:
-        os.system(f"copy /a {lu_jing} {lu_jing[:-3]+'_backup.flv'} ")
+        # os.system(f"copy /a {lu_jing} {lu_jing[:-3]+'_backup.flv'} ") #备份问题需要等文件修改问题解决
         lu_jing_out = lu_jing[:-3] + "mp4"
         os.rename(lu_jing, lu_jing_out)
         print(f"转封装完毕:{lu_jing_out}")
