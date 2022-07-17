@@ -1,5 +1,5 @@
 # coding = utf-8
-# 录播自动转封装v1.0 @tdccj
+# 录播自动转封装v2.0.b @tdccj
 # 暂时可以运行，录播质量有无问题未知，待开发备份功能
 # 代码重构中
 
@@ -18,6 +18,7 @@ print("os装载成功")
 
 
 def main():
+    print("v2.0.b")
     cwd = os.getcwd()  # 获取当前目录
     The_Path = read(cwd)
     Time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
@@ -51,7 +52,7 @@ def main():
             observer.stop()
 
 
-def read(cwd):
+def read(cwd):     #读取配置文件
     try:
         zm = open(cwd + "\\录播自动转封装设置.zm", "r")
         The_Path = zm.readline()
@@ -70,6 +71,7 @@ def read(cwd):
 
 def zhuan_ma(lu_jing):  # 用来执行转封装操作
     try:
+        os.system(f"copy /a {lu_jing} {lu_jing[:-3]+'_backup.flv'} ")
         lu_jing_out = lu_jing[:-3] + "mp4"
         os.rename(lu_jing, lu_jing_out)
         print(f"转封装完毕:{lu_jing_out}")
