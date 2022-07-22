@@ -1,18 +1,17 @@
 # coding = utf-8
-# 录播自动转封装v3.0.b2 @tdccj
+# 录播自动转封装v3.0.r @tdccj
 
 from watchdog.events import FileSystemEventHandler
-
 print("watchdog_1装载成功")
 from watchdog.observers import Observer
-
 print("watchdog_2装载成功")
 import time
-
 print("time装载成功")
 import os
-
 print("os装载成功")
+import subprocess
+print("subprocess")
+
 
 i = 0
 jishu = 0
@@ -51,7 +50,13 @@ def zhuan_fengzhuang(lu_jing):  # 用来执行转封装操作
     try:
         print("开始转封装")
         path = os.path.split(lu_jing)
-        os.system(f"copy /a {lu_jing} {path[0]}\\output\\{path[1]}")
+        p = subprocess.Popen(f"copy /a {lu_jing} {path[0]}\\output\\{path[1]}",shell=True)
+        while True:
+            print("wait")
+            time.sleep(1)
+            if p.poll() == 0:
+                break
+        print("1")
         lu_jing = f"{path[0]}\\output\\{path[1]}"
         print(f"{path[0]}\\output\\{path[1]}")
 
@@ -78,9 +83,8 @@ class Watch(FileSystemEventHandler):  # 用来接受events的反馈
             global i
             i = i + 1
 
-
 def main():
-    print("v3.0.b2")
+    print("v3.0.r")
     global i, jishu, i2, lu_jing
     cwd = os.getcwd()  # 获取当前目录
     The_Path = read(cwd)
@@ -113,7 +117,7 @@ def main():
                     if i == i2:
                         jishu = jishu + 1
                         print(jishu)
-                    if jishu > 4:
+                    if jishu > 2:
                         zhuan_fengzhuang(lu_jing)
                     i2 = i
 
